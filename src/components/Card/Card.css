@@ -3,13 +3,13 @@
   height: 300px;
   border: 3px solid black;
   border-radius: 0.3em;
-  background-color: lightblue;
   margin: 10px;
   list-style: none;
   display: inline-block;
   font-family: monospace;
   font-size: 1.5em;
   position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
 }
 /* button:active{
     color: white;
@@ -36,4 +36,7 @@
   top: 0.4em;
   right: 0.4em;
 }
+/* .close-button--white{
+    color: white;
+} */
 
