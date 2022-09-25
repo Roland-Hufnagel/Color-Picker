@@ -1,49 +1,80 @@
 import "./App.css";
-import Cards from "./components/Cards/Cards.js";
-import Form from "./components/Form/Form.js";
-import { useState } from "react";
-import {initialCards} from "./assets/db.js";
-
-
+import Pallet from "./components/Pallet/Pallet.js";
+//import Cards from "./components/Cards/Cards.js";
+import { useEffect, useState } from "react";
+//import { initialCards } from "./assets/db.js";
 
 function App() {
-  const [cards, setCards] = useState(initialCards ?? []);
+  //console.log(initialCards[0].cards);
+  //const [cards, setCards] = useState(
+  // JSON.parse(localStorage.getItem("cards")) ??
+  // initialCards
+  // );
 
-  console.log(...cards);
+  // const API = "https://www.thecolorapi.com/id?hex=";
 
-  function updateCards(id, hex) {
-    setCards(
-      cards.map((card) => {
-        return { ...card, colorCode: id === card.id ? hex : card.colorCode };
-      })
-    );
-  }
+  // useEffect(() => {
+  //   localStorage.setItem("cards", JSON.stringify(cards));
+  // }, [cards]);
 
-  function deleteCard(id) {
-    setCards(
-      cards.filter((card) => {
-        console.log(id, card.id, id === card.id);
-        return id !== card.id;
-      })
-    );
-  }
-  
-  function addCard(hex) {
-    const newArray = cards.map((card) => {
-      return card;
-    });
-    newArray.unshift({ id: Math.random(), colorCode: hex });
-    setCards(newArray);
-    console.log(newArray);
-  }
- 
+  // console.log(...cards);
+
+  // async function getColorName(hex) {
+  //   try {
+  //     const response = await fetch(API + hex.substring(1));
+  //     const result = await response.json();
+  //     const newName = result.name.value;
+  //     return newName;
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     return "No Name available";
+  //   }
+  // }
+
+  // async function updateCards(id, hex) {
+  //   const newName = await getColorName(hex);
+  //   setCards(
+  //     cards.map((card) => {
+  //       return {
+  //         ...card,
+  //         colorCode: id === card.id ? hex : card.colorCode,
+  //         name: id === card.id ? newName : card.name,
+  //       };
+  //     })
+  //   );
+  // }
+
+  // function deleteCard(id) {
+  //   setCards(
+  //     cards.filter((card) => {
+  //       console.log(id, card.id, id === card.id);
+  //       return id !== card.id;
+  //     })
+  //   );
+  // }
+
+  // async function addCard(hex) {
+  //   const newName = await getColorName(hex);
+  //   const newArray = cards.map((card) => {
+  //     return card;
+  //   });
+  //   newArray.unshift({ id: Math.random(), colorCode: hex, name: newName });
+  //   setCards(newArray);
+  //   console.log(newArray);
+  // }
 
   return (
-    <>
-      <h1>Color Saver</h1>
-      <Form onAdd={addCard} />
-      <Cards cards={cards} onChange={updateCards} onDeleteCard={deleteCard} />
-    </>
+    // <>
+    //   <h1>Color Saver</h1>
+
+    //   <Cards
+    //     cards={cards}
+    //     onChange={updateCards}
+    //     onDeleteCard={deleteCard}
+    //     onAdd={addCard}
+    //   />
+    // </>
+    <Pallet />
   );
 }
 

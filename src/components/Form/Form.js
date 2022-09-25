@@ -1,8 +1,9 @@
 import "./Form.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Form(props) {
-  const [color, setColor] = useState("#82c91e");
+  const [color, setColor] = useState("#ccc");
+  const colorAPI = "https://www.thecolorapi.com/id?hex=";
 
   function handleChange(event) {
     setColor(event.target.value);
@@ -12,6 +13,7 @@ export default function Form(props) {
     event.preventDefault();
     props.onAdd(color);
   }
+  
 
   return (
     <form
@@ -20,6 +22,7 @@ export default function Form(props) {
       onSubmit={handleSubmit}
       style={{ backgroundColor: color }}
     >
+      <h2>Bonbon Style</h2>
       <label htmlFor="input-color"></label>
       <input
         onChange={handleChange}
