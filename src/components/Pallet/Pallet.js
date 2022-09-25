@@ -3,17 +3,17 @@ import Cards from "../Cards/Cards.js";
 import { useEffect, useState } from "react";
 import { initialCards } from "../../assets/db.js";
 
-export default function Pallet() {
+export default function Pallet(props) {
   //console.log(initialCards[0].cards);
   const [cards, setCards] = useState(
-    // JSON.parse(localStorage.getItem("cards")) ??
+     JSON.parse(localStorage.getItem(`Cards-${props.name}`)) ??
     initialCards
   );
 
   const API = "https://www.thecolorapi.com/id?hex=";
 
   useEffect(() => {
-    localStorage.setItem("cards", JSON.stringify(cards));
+    localStorage.setItem(`Cards-${props.name}`, JSON.stringify(cards));
   }, [cards]);
 
   console.log(...cards);
@@ -64,7 +64,7 @@ export default function Pallet() {
 
   return (
     <>
-      <h1>Pallet 1</h1>
+       <h1>{props.name}</h1>
 
 
 
@@ -73,7 +73,9 @@ export default function Pallet() {
         onChange={updateCards}
         onDeleteCard={deleteCard}
         onAdd={addCard}
+        name={props.name}
       />
+      <hr/>
     </>
   );
 }

@@ -4,7 +4,7 @@ import Form from "../Form/Form.js";
 export default function Cards(props) {
   return (
     <>
-      <Form onAdd={props.onAdd} />
+      <Form onAdd={props.onAdd} name={props.name}/>
       <ul className="card-container">
         {props.cards.map((card) => {
           return (
