@@ -2,7 +2,7 @@ import "./Card.css";
 import { FaRegTimesCircle } from "react-icons/fa";
 
 export default function Card(props) {
-  console.log(props.name);
+  //console.log(props.name);
   return (
     <li
       onClick={() => {

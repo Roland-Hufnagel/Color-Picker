@@ -5,7 +5,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 export default function Form(props) {
   const [color, setColor] = useState("#aabbcc");
   const colorAPI = "https://www.thecolorapi.com/id?hex=";
-
+console.log("props: " ,props);
   function handleChange(event) {
     setColor(event.target.value);
     console.log(event.target.value, "value");
@@ -20,7 +20,7 @@ export default function Form(props) {
     <textarea 
     className="header-input" 
     defaultValue={props.name}
-    onBlur={(event)=>{props.onChangeName(props.name, event.target.value)}}
+    onBlur={(event)=>{props.onChangeName(props.id, event.target.value)}}
     ></textarea>
     <form
       action="#"

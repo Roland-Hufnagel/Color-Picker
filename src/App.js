@@ -1,24 +1,34 @@
 import "./App.css";
-import Pallet from "./components/Pallet/Pallet.js";
-import { useState } from "react";
+import Cardspallet from "./components/Cards/Cardspallet.js";
+import { useState, useEffect } from "react";
 import { SiAddthis } from "react-icons/si";
 
 function App() {
-  const initialPallets = ["pallet no.1", "pallet no.2", "pallet no.3"];
+  const initialPallets = [
+    { id: "1", name: "pallet no.1" },
+    { id: "2", name: "pallet no.2" },
+    { id: "3", name: "pallet no.3" },
+  ];
   const [pallets, setPallets] = useState(
-     initialPallets
+    JSON.parse(localStorage.getItem("pallets")) ?? initialPallets
   );
 
-  function changePalletName(name, value) {
-    console.log("--->", name, "--", value);
+  function changePalletName(id, name) {
+    console.log("--->", id, "--", name);
     setPallets(
       pallets.map((pallet) => {
-        return pallet === name ? value : pallet;
+        return id === pallet.id
+          ? { id: pallet.id, name: name }
+          : { id: pallet.id, name: pallet.name };
       })
     );
-    localStorage.setItem("pallets", JSON.stringify(pallets));
   }
-  console.log(pallets);
+  console.log("----", pallets);
+
+  useEffect(() => {
+    localStorage.setItem(`pallets`, JSON.stringify(pallets));
+  }, [pallets]);
+
   return (
     <>
       <h1>
@@ -28,10 +38,10 @@ function App() {
 
       {pallets.map((pallet, index) => {
         return (
-          <Pallet
-            key={pallet}
-            name={pallet}
-            id={index}
+          <Cardspallet
+            key={pallet.id}
+            name={pallet.name}
+            id={pallet.id}
             onChangeName={changePalletName}
           />
         );

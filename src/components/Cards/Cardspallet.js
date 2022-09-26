@@ -1,20 +1,18 @@
-import "./Pallet.css";
-import Cards from "../Cards/Cards.js";
-import { useEffect, useState } from "react";
+import Card from "../Card/Card.js";
+import Form from "../Form/Form.js";
+import { useState, useEffect } from "react";
 import { initialCards } from "../../assets/db.js";
 
-export default function Pallet(props) {
+export default function Cardspallet(props) {
   const [cards, setCards] = useState(
-     JSON.parse(localStorage.getItem(`Cards-${props.name}`)) ??
-    initialCards
+    JSON.parse(localStorage.getItem(`Cards-${props.id}`)) ?? initialCards
   );
-
+  console.log("Cardspallets props: ", props);
   const API = "https://www.thecolorapi.com/id?hex=";
 
   useEffect(() => {
-    localStorage.setItem(`Cards-${props.name}`, JSON.stringify(cards));
+    localStorage.setItem(`Cards-${props.id}`, JSON.stringify(cards));
   }, [cards]);
-
 
   async function getColorName(hex) {
     try {
@@ -55,21 +53,37 @@ export default function Pallet(props) {
     const newArray = cards.map((card) => {
       return card;
     });
-    newArray.unshift({ id: Math.random().toString(), colorCode: hex, name: newName });
+    newArray.unshift({
+      id: Math.random().toString(),
+      colorCode: hex,
+      name: newName,
+    });
     setCards(newArray);
   }
 
   return (
     <>
-       <h1>{props.name}</h1>
-      <Cards
-        cards={cards}
-        onChange={updateCards}
-        onDeleteCard={deleteCard}
+      <h2>{props.name}</h2>
+      <Form
+        id={props.id}
         onAdd={addCard}
-        onChangeName={props.onChangeName}
         name={props.name}
+        onChangeName={props.onChangeName}
       />
+      <ul className="card-container">
+        {cards.map((card) => {
+          return (
+            <Card
+              key={card.id}
+              id={card.id}
+              hex={card.colorCode}
+              name={card.name}
+              onChange={updateCards}
+              onDeleteCard={deleteCard}
+            />
+          );
+        })}
+      </ul>
     </>
   );
 }
