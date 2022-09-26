@@ -55,7 +55,7 @@ export default function Pallet(props) {
     const newArray = cards.map((card) => {
       return card;
     });
-    newArray.unshift({ id: Math.random(), colorCode: hex, name: newName });
+    newArray.unshift({ id: Math.random().toString(), colorCode: hex, name: newName });
     setCards(newArray);
   }
 
@@ -67,6 +67,7 @@ export default function Pallet(props) {
         onChange={updateCards}
         onDeleteCard={deleteCard}
         onAdd={addCard}
+        onChangeName={props.onChangeName}
         name={props.name}
       />
     </>

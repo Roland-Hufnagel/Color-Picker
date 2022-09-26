@@ -1,5 +1,6 @@
 import "./Form.css";
 import { useEffect, useState } from "react";
+import { FaRegTimesCircle } from "react-icons/fa";
 
 export default function Form(props) {
   const [color, setColor] = useState("#aabbcc");
@@ -13,16 +14,22 @@ export default function Form(props) {
     event.preventDefault();
     props.onAdd(color);
   }
-  
 
   return (
+  <div className="form-container" style={{ backgroundColor: color }}>
+    <textarea 
+    className="header-input" 
+    defaultValue={props.name}
+    onBlur={(event)=>{props.onChangeName(props.name, event.target.value)}}
+    ></textarea>
     <form
       action="#"
       className="form"
       onSubmit={handleSubmit}
       style={{ backgroundColor: color }}
     >
-      <h2>{props.name}</h2>
+      
+      {/* <input className="header-input" defaultValue={props.name} onChange={doSomething}></input> */}
       <label htmlFor="input-color"></label>
       <input
         onChange={handleChange}
@@ -42,5 +49,6 @@ export default function Form(props) {
       />
       <button type="submit">Add</button>
     </form>
+    </div>
   );
 }
