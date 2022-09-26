@@ -30,6 +30,9 @@ export default function Card(props) {
             onClick={(event) => {
               event.stopPropagation();
             }}
+            onInput={(event)=>{
+              props.onChange(props.id, event.target.value)
+            }}
             pattern={"^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"}
             className="color-input"
             type="text"

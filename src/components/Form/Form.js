@@ -18,6 +18,7 @@ console.log("props: " ,props);
   return (
   <div className="form-container" style={{ backgroundColor: color }}>
     <textarea 
+    rows="3"
     className="header-input" 
     defaultValue={props.name}
     onBlur={(event)=>{props.onChangeName(props.id, event.target.value)}}

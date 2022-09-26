@@ -7,7 +7,6 @@ export default function Cardspallet(props) {
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem(`Cards-${props.id}`)) ?? initialCards
   );
-  console.log("Cardspallets props: ", props);
   const API = "https://www.thecolorapi.com/id?hex=";
 
   useEffect(() => {
@@ -27,6 +26,7 @@ export default function Cardspallet(props) {
   }
 
   async function updateCards(id, hex) {
+    console.log("in UpdateCards", id, hex);
     const newName = await getColorName(hex);
     setCards(
       cards.map((card) => {
@@ -63,6 +63,8 @@ export default function Cardspallet(props) {
 
   return (
     <>
+      {" "}
+      <hr />
       <h2>{props.name}</h2>
       <Form
         id={props.id}
@@ -75,9 +77,9 @@ export default function Cardspallet(props) {
           return (
             <Card
               key={card.id}
-              id={card.id}
               hex={card.colorCode}
               name={card.name}
+              id={card.id}
               onChange={updateCards}
               onDeleteCard={deleteCard}
             />

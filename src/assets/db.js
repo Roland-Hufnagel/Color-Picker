@@ -6,5 +6,10 @@ const initialCards = [
   { id: "0.5863134682520428", colorCode: "#9a608d", name: "Strikemaster" },
   { id: "0.2103275759661456", colorCode: "#82c91e", name: "Lima" },
 ];
+const initialPallets = [
+  { id: "1", name: "pallet no.1" },
+  { id: "2", name: "pallet no.2" },
+  { id: "3", name: "pallet no.3" },
+];
 
-export { initialCards };
+export { initialCards, initialPallets};
