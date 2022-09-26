@@ -6,7 +6,7 @@ import { SiAddthis } from "react-icons/si";
 function App() {
   const initialPallets = ["pallet no.1", "pallet no.2", "pallet no.3"];
   const [pallets, setPallets] = useState(
-    JSON.parse(localStorage.getItem("pallets")) && initialPallets
+     initialPallets
   );
 
   function changePalletName(name, value) {
