@@ -20,7 +20,6 @@ export default function Card(props) {
       >
         <FaRegTimesCircle className="close-icon" />
       </button>
-      {/* <div className="grid-container"> */}
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -39,7 +38,6 @@ export default function Card(props) {
           ></input>
         </form>
         <p className="color-name">{props.name}</p>
-      {/* </div> */}
     </li>
   );
 }

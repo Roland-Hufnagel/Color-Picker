@@ -12,10 +12,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
   text-align: center;
 }
-/* button:active{
-    color: white;
-   
-} */
+
 .color-input {
   margin-top: 80px;
   border: 3px solid black;
@@ -25,14 +22,7 @@
   background-color: hsla(0, 0%, 100%, 0.5);
   text-align: center;
 }
-.grid-container {
-  background-color: yellow;
-  height: 50%;
-  display: grid;
-  grid-template-rows: 200px ;
-  justify-content: center;
-  align-items: center;
-}
+
 .close-button {
   all: unset;
   cursor: pointer;
@@ -40,7 +30,6 @@
   top: 0.4em;
   right: 0.4em;
 }
-
 
 .color-name{
   text-align: center;

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { initialCards } from "../../assets/db.js";
 
 export default function Pallet(props) {
-  //console.log(initialCards[0].cards);
   const [cards, setCards] = useState(
      JSON.parse(localStorage.getItem(`Cards-${props.name}`)) ??
     initialCards
@@ -16,7 +15,6 @@ export default function Pallet(props) {
     localStorage.setItem(`Cards-${props.name}`, JSON.stringify(cards));
   }, [cards]);
 
-  console.log(...cards);
 
   async function getColorName(hex) {
     try {
@@ -59,15 +57,11 @@ export default function Pallet(props) {
     });
     newArray.unshift({ id: Math.random(), colorCode: hex, name: newName });
     setCards(newArray);
-    console.log(newArray);
   }
 
   return (
     <>
        <h1>{props.name}</h1>
-
-
-
       <Cards
         cards={cards}
         onChange={updateCards}
@@ -75,7 +69,6 @@ export default function Pallet(props) {
         onAdd={addCard}
         name={props.name}
       />
-      <hr/>
     </>
   );
 }
