@@ -1,16 +1,19 @@
 import Card from "../Card/Card.js";
 import Form from "../Form/Form.js";
+import "./Cardspallet.css";
 import { useState, useEffect } from "react";
 import { initialCards } from "../../assets/db.js";
 
 export default function Cardspallet(props) {
+  // id, name, onChangeName
   const [cards, setCards] = useState(
-    JSON.parse(localStorage.getItem(`Cards-${props.id}`)) ?? initialCards
+    // () => JSON.parse(localStorage.getItem(`Cards-${props.id}`)) ??
+    initialCards
   );
   const API = "https://www.thecolorapi.com/id?hex=";
 
   useEffect(() => {
-    localStorage.setItem(`Cards-${props.id}`, JSON.stringify(cards));
+    localStorage.setItem(`Cards`, JSON.stringify(cards));
   }, [cards]);
 
   async function getColorName(hex) {
@@ -48,7 +51,8 @@ export default function Cardspallet(props) {
     );
   }
 
-  async function addCard(hex) {
+  async function addCard(palletId, hex) {
+    console.log("--__--", palletId, hex);
     const newName = await getColorName(hex);
     const newArray = cards.map((card) => {
       return card;
@@ -57,23 +61,41 @@ export default function Cardspallet(props) {
       id: Math.random().toString(),
       colorCode: hex,
       name: newName,
+      palletId: palletId,
     });
     setCards(newArray);
   }
-
+  console.log(cards);
   return (
     <>
-      {" "}
       <hr />
       <h2>{props.name}</h2>
-      <Form
-        id={props.id}
-        onAdd={addCard}
-        name={props.name}
-        onChangeName={props.onChangeName}
-      />
       <ul className="card-container">
-        {cards.map((card) => {
+        <Form
+          palletId={props.id}
+          id={props.id}
+          onAdd={addCard}
+          name={props.name}
+          onChangeName={props.onChangeName}
+        />
+        {cards
+          .filter((card) => {
+            return card.palletId === props.id;
+          })
+          .map((card) => {
+            return (
+              <Card
+                key={card.id}
+                hex={card.colorCode}
+                name={card.name}
+                id={card.id}
+                onChange={updateCards}
+                onDeleteCard={deleteCard}
+              />
+            );
+          })}
+
+        {/* {cards.map((card) => {
           return (
             <Card
               key={card.id}
@@ -84,7 +106,7 @@ export default function Cardspallet(props) {
               onDeleteCard={deleteCard}
             />
           );
-        })}
+        })} */}
       </ul>
     </>
   );

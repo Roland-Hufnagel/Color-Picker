@@ -1,7 +1,7 @@
 import "./Card.css";
 import { FaRegTimesCircle } from "react-icons/fa";
 
-export default function Card(props) {
+export default function Card(props) { // id, name, hex, onChange, onDeleteCard
   //console.log(props.name);
   return (
     <li
@@ -37,7 +37,7 @@ export default function Card(props) {
             className="color-input"
             type="text"
             name="hexInput"
-            defaultValue={props.hex}
+            value={props.hex}
           ></input>
         </form>
         <p className="color-name">{props.name}</p>

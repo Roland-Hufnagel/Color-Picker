@@ -6,13 +6,13 @@ import { initialPallets } from "./assets/db.js";
 
 function App() {
 
-  const [pallets, setPallets] = useState(
+  const [pallets, setPallets] = useState(()=> // performed schneller
     JSON.parse(localStorage.getItem("pallets")) ?? initialPallets ?? []
   );
 
   function changePalletName(id, newName) {
-    setPallets(
-      pallets.map((pallet) => {
+    setPallets(prevPallets=>
+      prevPallets.map((pallet) => {
         return id === pallet.id
           ? { id: pallet.id, name: newName }
           : {...pallet}
@@ -36,7 +36,7 @@ function App() {
             key={pallet.id}
             name={pallet.name}
             id={pallet.id}
-            onChangeName={changePalletName}
+            onChangeName={(newName)=>{changePalletName(pallet.id, newName)}}
           />
         );
       })}
